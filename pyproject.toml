@@ -1,25 +1,34 @@
 [build-system]
-requires = ["setuptools>=61.0",
+requires = ["setuptools>=64.0",
             "setuptools-scm>=8.0"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools_scm]
-version_file = "mysql-api/_version.py"
+version_file = "mysql_api/_version.py"
 
 [project]
-name = "mysql-api"
+name = "mysql_api"
 dynamic = ["version"]
 authors = [
   { name="Jaroslaw Wencel", email="jaroslaw.wencel@gmail.com" },
 ]
 description = "API to provide data from MySQL db"
-readme = "README.md"
+license = {text = "MIT License"}
+readme = {file = "README.md", content-type = "text/markdown"}
 requires-python = ">=3.11"
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
+dependencies = [
+    "fastapi~=0.109.0",
+    "mysql-connector-python~=8.2.0",
+    "python-decouple~=3.8",
+    "uvicorn[standard]~=0.25.0",
+]
+keywords = ['mysql', 'api']
+
 
 [project.urls]
 Homepage = "https://serafin.tech/mysql-api"
