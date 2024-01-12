@@ -1,3 +1,4 @@
+# pylint: disable=missing-module-docstring,missing-function-docstring,missing-class-docstring
 import logging
 from typing import Dict, List
 
@@ -5,6 +6,7 @@ import mysql.connector
 
 
 class MySQLInterface:
+    # pylint: disable=too-many-arguments
     def __init__(self, host: str, user: str, password: str, database: str, port: int = 3306):
         self.host = host
         self.port = port
@@ -37,7 +39,4 @@ class MySQLInterface:
                 logging.error("database operation error: %s", str(exception))
                 raise RuntimeError('database operation error') from exception
 
-            return [
-                {col: val for col, val in zip(cursor.column_names, row)}
-                for row in cursor.fetchall()
-            ]
+            return [dict(zip(cursor.column_names, row)) for row in cursor.fetchall()]

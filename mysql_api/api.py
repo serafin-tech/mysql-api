@@ -1,9 +1,10 @@
+# pylint: disable=missing-module-docstring,missing-function-docstring,missing-class-docstring
 import logging
 
 from fastapi import FastAPI, HTTPException
 from decouple import config
 
-from db import MySQLInterface
+from mysql_api.db import MySQLInterface
 
 MYSQL_HOST = config('MYSQL_HOST', default='127.0.0.1')
 MYSQL_PORT = config('MYSQL_PORT', default=3306, cast=int)
@@ -22,8 +23,8 @@ app = FastAPI()
 @app.get("/status")
 def root():
     try:
-        db = MySQLInterface(MYSQL_HOST, MYSQL_USER, MYSQL_PASS, MYSQL_DATABASE, MYSQL_PORT)
-        db.connect()
+        db_interface = MySQLInterface(MYSQL_HOST, MYSQL_USER, MYSQL_PASS, MYSQL_DATABASE, MYSQL_PORT)
+        db_interface.connect()
 
         return {"message": "OK"}
     except RuntimeError as exception:
@@ -34,10 +35,10 @@ def root():
 @app.get("/table/{table_name}")
 def table(table_name: str):
     try:
-        db = MySQLInterface(MYSQL_HOST, MYSQL_USER, MYSQL_PASS, MYSQL_DATABASE, MYSQL_PORT)
-        db.connect()
+        db_interface = MySQLInterface(MYSQL_HOST, MYSQL_USER, MYSQL_PASS, MYSQL_DATABASE, MYSQL_PORT)
+        db_interface.connect()
 
-        return db.query_full_table(table=table_name)
+        return db_interface.query_full_table(table=table_name)
     except RuntimeError as exception:
         logging.debug(msg=str(exception))
         raise HTTPException(status_code=502, detail='API error') from exception
