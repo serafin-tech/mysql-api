@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=61.0",
+            "setuptools-scm>=8.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools_scm]
+version_file = "mysql-api/_version.py"
+
+[project]
+name = "mysql-api"
+dynamic = ["version"]
+authors = [
+  { name="Jaroslaw Wencel", email="jaroslaw.wencel@gmail.com" },
+]
+description = "API to provide data from MySQL db"
+readme = "README.md"
+requires-python = ">=3.11"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://serafin.tech/mysql-api"
+Issues = "https://serafin.tech/mysql-api/issues"
