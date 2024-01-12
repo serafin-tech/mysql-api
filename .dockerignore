@@ -3,7 +3,10 @@ venv/
 .env*
 .git/
 .gitignore
+.pylintrc
 README.md
 LICENSE.txt
-runme.sh
-buildme.sh
+*.sh
+*.toml
+setup.*
+*.egg-info/
