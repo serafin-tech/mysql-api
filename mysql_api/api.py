@@ -5,6 +5,7 @@ from fastapi import FastAPI, HTTPException
 from decouple import config
 
 from mysql_api.db import MySQLInterface
+from mysql_api._version import version
 
 MYSQL_HOST = config('MYSQL_HOST', default='127.0.0.1')
 MYSQL_PORT = config('MYSQL_PORT', default=3306, cast=int)
@@ -20,8 +21,13 @@ logging.basicConfig(level=logging.DEBUG if DEBUG else logging.INFO)
 app = FastAPI()
 
 
-@app.get("/status")
+@app.get("/")
 def root():
+    return {'version': version}
+
+
+@app.get("/status")
+def status():
     try:
         db_interface = MySQLInterface(MYSQL_HOST, MYSQL_USER, MYSQL_PASS, MYSQL_DATABASE, MYSQL_PORT)
         db_interface.connect()
