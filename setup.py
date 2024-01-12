@@ -16,11 +16,6 @@ long_description = (here / "README.md").read_text(encoding="utf-8")
 with open((here / "requirements.txt"), encoding='utf-8') as fp:
     requirements = fp.read().split('\n')
 
-version = {}
-with open((here / "mysql_api/_version.py"), encoding='utf-8') as fp:
-    exec(fp.read(), version)
-# later on we use: version['__version__']
-
 # Arguments marked as "Required" below must be included for upload to PyPI.
 # Fields marked as "Optional" may be commented out.
 
@@ -43,7 +38,7 @@ setup(
     # For a discussion on single-sourcing the version across setup.py and the
     # project code, see
     # https://packaging.python.org/guides/single-sourcing-package-version/
-    version=version['__version__'],  # Required
+    #version="0.0.1",  # Required
     # This is a one-line description or tagline of what your project does. This
     # corresponds to the "Summary" metadata field:
     # https://packaging.python.org/specifications/core-metadata/#summary
