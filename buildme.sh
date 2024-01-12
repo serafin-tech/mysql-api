@@ -6,9 +6,12 @@ then
 fi
 
 source venv/bin/activate
+
 python3.11 -m pip install -U pip
 python3.11 -m pip install -r requirements.txt
 
-echo "Test command: curl -i http://localhost:8000/"
+python3 -m pip install build setuptools setuptools-scm
 
-uvicorn mysql_api.api:app --reload
+rm -rf dist/ mysql_api.egg-info/
+
+python3 -m build .

@@ -4,4 +4,6 @@ venv/
 .git/
 .gitignore
 README.md
+LICENSE.txt
 runme.sh
+buildme.sh
